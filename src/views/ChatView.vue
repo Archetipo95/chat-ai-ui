@@ -28,7 +28,9 @@ const formatMessage = (text: string) => {
     .replace(/(?:^|\n)(\d+)\. (.*?)(?:\n|$)/g, '<li>$1. $2</li>') // Numbered lists
     .replace(/<\/li>\n<li>/g, '</li><li>') // Ensure list continuity
     .replace(/<li>/, '<ul><li>') // Wrap in `<ul>`
-    .replace(/<\/li>$/, '</li></ul>'); // Close the `<ul>`
+    .replace(/<\/li>$/, '</li></ul>') // Close the `<ul>`
+    .replace(/<think>(.*?)<\/think>/g, '<span class="think">$1</span>'); // Style `<think>` tags
+
 };
 
 // Auto-scroll to bottom
@@ -83,3 +85,12 @@ onMounted(() => {
     <ChatInput @send="chatStore.sendMessage" aria-label="Chat message input" />
   </div>
 </template>
+
+<style>
+.think {
+  font-style: italic;
+  color: #ffd7c4;
+  padding: 0.2em;
+  border-radius: 4px;
+}
+</style>
