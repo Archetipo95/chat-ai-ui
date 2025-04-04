@@ -49,7 +49,13 @@ onMounted(() => {
     <Header />
 
     <!-- Chat messages -->
-    <div id="chat-container" class="flex-1 overflow-y-auto p-4 space-y-4">
+    <div
+      id="chat-container"
+      class="flex-1 overflow-y-auto p-4 space-y-4"
+      role="log"
+      aria-live="polite"
+      aria-relevant="additions"
+    >
       <div
         v-for="(msg, index) in chatStore.messages"
         :key="index"
@@ -64,15 +70,16 @@ onMounted(() => {
               ? 'bg-blue-600 text-white'
               : 'bg-gray-700 text-white'
           "
+          aria-label="Chat message content"
         ></div>
       </div>
       <div v-if="chatStore.isLoading" class="flex justify-start">
         <div class="bg-gray-700 text-white px-4 py-2 rounded-lg">
-          <span class="animate-pulse">AI is thinking...</span>
+          <span class="animate-pulse" role="status">AI is thinking...</span>
         </div>
       </div>
     </div>
 
-    <ChatInput @send="chatStore.sendMessage" />
+    <ChatInput @send="chatStore.sendMessage" aria-label="Chat message input" />
   </div>
 </template>

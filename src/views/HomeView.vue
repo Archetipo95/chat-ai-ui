@@ -98,10 +98,3 @@ const createUser = async () => {
     </div>
   </div>
 </template>
-
-<style>
-/* Define the oreo style focus shadow */
-.focus\:shadow-outline-oreo:focus {
-  box-shadow: 0 0 0 3px blue, 0 0 0 5px white, 0 0 0 7px blue;
-}
-</style>

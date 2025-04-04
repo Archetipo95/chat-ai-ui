@@ -18,7 +18,7 @@ const logout = () => {
   >
     <img :src="robotImage" alt="Chat AI" class="w-8 h-8" />
     <h1 class="text-lg font-semibold">Chat AI</h1>
-    <button @click="logout" class="text-gray-400 hover:text-white">
+    <button @click="logout" class="text-gray-400 hover:text-white focus:shadow-outline-oreo focus:outline-none">
       Logout
     </button>
   </div>
