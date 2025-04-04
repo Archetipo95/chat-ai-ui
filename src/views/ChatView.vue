@@ -48,7 +48,7 @@ onMounted(() => {
 
 <template>
   <div class="flex flex-col h-screen bg-gray-900 text-white">
-    <Header />
+    <AppHeader />
 
     <!-- Chat messages -->
     <div

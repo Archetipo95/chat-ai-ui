@@ -46,9 +46,7 @@ const createUser = async () => {
     });
 
     router.push('/chat');
-  } catch (err: any) {
-    console.log(err);
-    
+  } catch (err: any) {    
     error.value = `Something went wrong. Please try again later. \n
     ${err.response?.data?.error || err.message}`;
 
