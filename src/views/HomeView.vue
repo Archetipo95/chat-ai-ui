@@ -5,7 +5,7 @@ import { useUserStore } from '../stores/user';
 import { useRouter } from 'vue-router';
 import robotImage from '../assets/robot.png';
 
-// const userStore = useUserStore();
+const userStore = useUserStore();
 const router = useRouter();
 
 const name = ref('');
@@ -13,9 +13,18 @@ const email = ref('');
 const loading = ref(false);
 const error = ref('');
 
+// Regular expression for validating email format
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 const createUser = async () => {
   if (!name.value || !email.value) {
     error.value = 'Name and email are required';
+    return;
+  }
+
+  // Check email format using the regex
+  if (!emailRegex.test(email.value)) {
+    error.value = 'Please enter a valid email address';
     return;
   }
 
@@ -37,8 +46,12 @@ const createUser = async () => {
     });
 
     router.push('/chat');
-  } catch (err) {
-    error.value = 'Something went wrong. Please try again';
+  } catch (err: any) {
+    console.log(err);
+    
+    error.value = `Something went wrong. Please try again later. \n
+    ${err.response?.data?.error || err.message}`;
+
   } finally {
     loading.value = false;
   }
@@ -53,40 +66,35 @@ const createUser = async () => {
         Welcome To Chat AI
       </h1>
 
-      <label for="name" class="block text-sm font-medium mb-1">
-        Name
-      </label>
-      <input
-        type="text"
-        id="name"
-        aria-required="true"
-        class="w-full p-2 mb-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:shadow-outline-oreo"
-        placeholder="Enter your name"
-        v-model="name"
-      />
+      <div class="flex flex-col gap-4">
+        <div>
+          <label for="name" class="block text-sm font-medium mb-1">
+            Name
+          </label>
+          <input type="text" id="name" aria-required="true"
+            class="w-full p-2 mb-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:shadow-outline-oreo"
+            placeholder="Enter your name" v-model="name" />
+        </div>
 
-      <label for="email" class="block text-sm font-medium mb-1">
-        Email
-      </label>
-      <input
-        type="email"
-        id="email"
-        aria-required="true"
-        class="w-full p-2 mb-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:shadow-outline-oreo"
-        placeholder="Enter your email"
-        v-model="email"
-      />
+        <div>
+          <label for="email" class="block text-sm font-medium mb-1">
+            Email
+          </label>
+          <input type="email" id="email" aria-required="true"
+            class="w-full p-2 mb-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:shadow-outline-oreo"
+            placeholder="Enter your email" v-model="email" />
+        </div>
 
-      <button
-        @click="createUser"
-        class="w-full p-2 bg-blue-500 rounded-lg focus:outline-none focus:shadow-outline-oreo"
-        :disabled="loading"
-        :aria-busy="loading"
-      >
-        {{ loading ? 'Logging in...' : 'Start Chat' }}
-      </button>
+        <div class="mt-8">
+          <button @click="createUser"
+            class="w-full p-2 bg-blue-500 rounded-lg focus:outline-none focus:shadow-outline-oreo" :disabled="loading"
+            :aria-busy="loading">
+            {{ loading ? 'Logging in...' : 'Start Chat' }}
+          </button>
 
-      <p v-if="error" class="text-red-400 text-center mt-2" role="alert">{{ error }}</p>
+          <p v-if="error" class="text-red-400 text-center mt-2" role="alert">{{ error }}</p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
