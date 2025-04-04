@@ -9,7 +9,7 @@ interface ChatMessage {
 }
 
 interface FormattedMessage {
-  role: 'user' | 'ai';
+  role: 'user' | 'assistant';
   content: string;
 }
 
@@ -34,7 +34,7 @@ export const useChatStore = defineStore('chat', () => {
       messages.value = data.messages
         .flatMap((msg: ChatMessage): FormattedMessage[] => [
           { role: 'user', content: msg.message },
-          { role: 'ai', content: msg.reply },
+          { role: 'assistant', content: msg.reply },
         ])
         .filter((msg: FormattedMessage) => msg.content);
     } catch (error) {

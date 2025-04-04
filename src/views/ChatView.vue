@@ -57,8 +57,8 @@ onMounted(() => {
       aria-relevant="additions"
     >
       <div
-        v-for="(msg, index) in chatStore.messages"
-        :key="index"
+        v-for="(msg) in chatStore.messages"
+        :key="msg.content"
         class="flex items-start"
         :class="msg.role === 'user' ? 'justify-end' : 'justify-start'"
       >

@@ -2,8 +2,8 @@ import { defineStore } from 'pinia';
 
 export const useUserStore = defineStore('user', {
   state: () => ({
-    userId: 'martin_masevski2_gmail_com' as string | null,
-    name: 'asd' as string | null,
+    userId: null as string | null,
+    name: null as string | null,
   }),
   actions: {
     setUser(data: { userId: string; name: string }) {
