@@ -1,5 +1,19 @@
-# Vue 3 + TypeScript + Vite
+# Chat AI UI
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+This is the frontend for the Chat AI application. It is a **Vue.js 3** application that uses a custom API to interact with [Stream Chat](https://getstream.io), your own [Neon](https://neon.tech) PostgreSQL database and YOUR LLM.
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+<img src="./src/assets/screen.png" />
+
+The Express backend API for this application can be found [here](TODO/chat-ai-api).
+
+## Installation
+
+1. Clone the repository
+2. Run `npm install`
+3. Create a `.env` file in the root directory and add the following environment variables:
+
+```
+VITE_API_URL=http://localhost:8000
+```
+
+4. Run the server with `npm run dev` and open on `http://localhost:3000`
