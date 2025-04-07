@@ -3,7 +3,7 @@ import { onMounted, nextTick } from 'vue';
 import { useUserStore } from '../stores/user';
 import { useChatStore } from '../stores/chat';
 import { useRouter } from 'vue-router';
-import Header from '../components/Header.vue';
+import AppHeader from '../components/AppHeader.vue';
 import ChatInput from '../components/ChatInput.vue';
 
 const userStore = useUserStore();
